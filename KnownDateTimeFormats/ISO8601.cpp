@@ -40,6 +40,7 @@ namespace StdUtils
 		throw Exception("Invalid format");
 	}
 
+    template<>
 	void ISO8601DateFormat::Parse(Date& buffer, String const& raw) const
 	{
 		int day, month, year;
@@ -54,6 +55,7 @@ namespace StdUtils
 		else
 			throw Exception("Value for month or day out of range");
 	}
+    template<>
 	String ISO8601DateFormat::Format(Date const& date) const
 	{
 		String rv(StringHelpers::ToString(date.getYear()));
@@ -62,13 +64,15 @@ namespace StdUtils
 
 		return rv;
 	}
-
+    
+    template<>
 	DateFormat& ISO8601DateFormat::Instance()
 	{
 		static ISO8601DateFormat instance;
 		return instance;
 	}
-
+    
+    template<>
 	void ISO8601TimeFormat::Parse(Time& buffer, String const& raw) const
 	{
 		int hours, minutes, seconds, milliseconds;
@@ -79,6 +83,7 @@ namespace StdUtils
 		buffer.setSecond(seconds);
 		buffer.setMillisecond(milliseconds);
 	}
+    template<>
 	String ISO8601TimeFormat::Format(Time const& time) const
 	{
 		String rv(StringHelpers::ToString<int>(time.getHour()));
@@ -89,13 +94,15 @@ namespace StdUtils
 
 		return rv;
 	}
-
+    
+    template<>
 	TimeFormat& ISO8601TimeFormat::Instance()
 	{
 		static ISO8601TimeFormat instance;
 		return instance;
 	}
-
+    
+    template<>
 	void ISO8601DateTimeFormat::Parse(DateTime& buffer, String const& raw) const
 	{
 		bool parsed = false;
@@ -114,12 +121,14 @@ namespace StdUtils
 		if (!parsed)
 			throw Exception("Invalid format");
 	}
-
+    
+    template<>
 	String ISO8601DateTimeFormat::Format(DateTime const& dateTime) const
 	{
 		return (ISO8601DateFormat::Instance().Format(dateTime.getDate()) + " " + ISO8601TimeFormat::Instance().Format(dateTime.getTime()));
 	}
-
+    
+    template<>
 	DateTimeFormat& ISO8601DateTimeFormat::Instance()
 	{
 		static ISO8601DateTimeFormat instance;

@@ -22,7 +22,7 @@ namespace StdUtils
 			template<typename T>
 			T getPersistantValue(String const& fieldName) const
 			{
-				return this->resolvePersistantValue(fieldName, Dynamic::ResolveType<T>()).getValue<T>();
+				return this->resolvePersistantValue(fieldName, Dynamic::ResolveType<T>()).template getValue<T>();
 			}
 		};
 	}

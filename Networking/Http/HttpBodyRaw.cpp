@@ -6,10 +6,6 @@
 
 #include <algorithm>
 
-#ifndef _WINDOWS
-#define min(a,b) (a<b?a:b)
-#endif
-
 
 using namespace StdUtils;
 using namespace StdUtils::Networking;
